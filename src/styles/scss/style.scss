@@ -4,3 +4,31 @@
     margin: 0;
 }
 
+html {
+    font-size: 10px;
+}
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+p {
+    font-size: 2rem;
+}
+.wrapper {
+    margin: 30px auto;
+}
+.title {
+    max-width: 760px;
+    text-align: center;
+    margin: 0 auto;
+    color: #bfd774;
+    font-weight: 400;
+    font-size: 3rem;
+}
+.readme {
+    max-width: 760px;
+    text-align: center;
+    margin: 10px auto
+}
+@import 'blocks/textarea';
+@import 'blocks/keyboard';

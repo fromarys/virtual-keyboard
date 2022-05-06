@@ -14,6 +14,13 @@ module.exports = {
         assetModuleFilename: "assets/[hash][ext][query]",
         clean: true
     },
+    devServer: {
+        open: true,
+        static: {
+            directory: './src',
+            watch: true
+        }
+    },
     devtool: 'source-map',
     plugins: [
         new HtmlWebpackPlugin({
