@@ -1,7 +1,7 @@
 export default [
   // 1 ряд
   {
-    code: 'Backquote', en: '§', enShift: '±', ru: 'ё', ruShift: 'Ё', row: 0, place: 0,
+    code: 'Backquote', en: '~', enShift: '±', ru: 'ё', ruShift: 'Ё', row: 0, place: 0,
   }, {
     code: 'Digit1', en: '1', enShift: '!', ru: '1', ruShift: '!', row: 0, place: 1,
   }, {
@@ -57,6 +57,8 @@ export default [
     code: 'BracketLeft', en: '[', enShift: '{', ru: 'х', ruShift: 'Х', row: 1, place: 11,
   }, {
     code: 'BracketRight', en: ']', enShift: '}', ru: 'ъ', ruShift: 'Ъ', row: 1, place: 12,
+  },{
+    code: 'Delete', system: true, name: 'Del', classes: 'keyboard__button delete', row: 1, place: 13,
   },
 
   // 3 ряд

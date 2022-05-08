@@ -4,6 +4,7 @@ import KEYS from './scripts/keys.js';
 import Module from './scripts/module.js';
 
 let textarea = document.querySelector('.textarea');
+let keyboard = document.querySelector('.keyboard');
 
 window.onload = () => {
     //Создает клавиатуру
@@ -13,18 +14,22 @@ window.onload = () => {
     let computerKeyPressed = (event) => {
         event.preventDefault();
         const virtualKey = document.querySelector(`[data-key-code="${event.code}"]`);
-        console.log(virtualKey)
         if (virtualKey) {
-            // console.log(virtualKey);//Возвращает элемент в DOM для нажатой клавиши
-            // console.log(event.code);
             if (event.type == 'keydown') textarea.value = module.insert(virtualKey, textarea.value);
-            module.press(event.code, event.type);
+            module.changeState(virtualKey, event.code, event.type);
         }
     };
+//Обрабатывает клики мыши
+    let mousePressed = (event) => {
+        textarea.value = module.insert(event.target, textarea.value);
+        module.changeState(event.target, event.target.dataset.keyCode, event.type);
+    };
 
-    //Захватывает нажатие клавиш
+//Захватывает нажатие клавиш
     document.addEventListener('keydown', computerKeyPressed);
     document.addEventListener('keyup', computerKeyPressed);
+    keyboard.addEventListener('mousedown', mousePressed);
+    keyboard.addEventListener('mouseup', mousePressed);
 
 };
 

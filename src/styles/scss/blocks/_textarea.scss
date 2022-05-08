@@ -10,6 +10,6 @@
     outline: none;
     font-size: 2rem;
     &:focus {
-        opacity: 0.4;
+        border: 4px solid rgba(250, 234, 104, 0.4);
     }
 }

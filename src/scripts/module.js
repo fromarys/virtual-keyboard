@@ -1,5 +1,6 @@
 const html = document.querySelector('html');
 const keyboard = document.querySelector('.keyboard');
+const textarea = document.querySelector('.textarea');
 
 export default class {
     constructor(keys) {
@@ -8,8 +9,9 @@ export default class {
         this.createKeyboard();
         this.shiftPressed = false;
         this.capslockPressed = false;
+        this.ctrlPressed = false;
       }
-
+//Выполняет проверку языка
       checkLang() {
         let currentLang = localStorage.getItem('language');
         if(!currentLang) {
@@ -30,24 +32,33 @@ export default class {
           const button = document.createElement('div');
           button.classList.add('keyboard__button');
           button.dataset.keyCode = elem.code;
-          button.innerHTML = elem.system ? elem.name : elem[this.language];//пока добавляется только английский
+          button.innerHTML = elem.system ? elem.name : elem[this.language];
           document.querySelectorAll('.keyboard__row')[createRow].append(button);
           if (elem.classes) button.classList = elem.classes;
         });
       }
-      
+//Находит код кнопки в массиве объектов
       buttonInfo(btn) {
        return this.keys.filter(e => e.code == btn.dataset.keyCode)[0];
       }
 
 
+//Вводит текст в textarea
       insert(btn, text) {
         let info = this.buttonInfo(btn);
         let value = text;
+        if (info == undefined) return value;
         if(info.system) {
           switch(info.code) {
             case 'Backspace' :
               value = value.slice(0, -1); break;
+            case 'Delete' :
+              let arr;
+              arr = value.split('');
+              arr.splice(textarea.selectionStart, 1);
+              value = arr.join('');
+              this.setSelection(textarea.selectionStart, 5);
+              break;
             case 'Tab' :
               value += '\t'; break;
             case 'Enter' :
@@ -57,50 +68,72 @@ export default class {
             default :
             value = value;
           }
-          
         } else {
           if(this.shiftPressed || this.capslockPressed) {
             value = value + info[`${this.language}Shift`];
           } else {
-            value += info[this.language];//пока добавляется только английский
-            // console.log(info);
+            value += info[this.language];
           }
-
         }
         return value;
       }
 
-      setLang() {
-
-      }
-
+  //Обрабатывает зажатие клавиш shift и capslock
       press(code, event) {
-        // console.log(code)
         if (code == 'ShiftLeft' || code == 'ShiftRight') {
-          if(event == 'keydown') {
-            this.shiftPressed = true;
-            return this.shiftPressed;
-          }
-          if (event == 'keyup') {
-            this.shiftPressed = false;
-            return this.shiftPressed;
+          switch (event) {
+            case 'keydown' :
+              this.shiftPressed = true; break;
+            case 'keyup' :
+              this.shiftPressed = false; break;
           }
         }
         if(code == 'CapsLock') {
-          if(event == 'keydown') {
+          if(event == 'keydown' || event == 'mousedown') {
             this.capslockPressed = !this.capslockPressed;
-            return this.capslockPressed;
+          }
+        }
+        if(code == 'ControlLeft' || code == 'ControlRight') {
+          switch (event) {
+            case 'keydown' :
+              this.ctrlPressed = true; break;
+            case 'keyup' :
+              this.ctrlPressed = false; break;
           }
         }
       }
-
-      changeView(code, event) {
-        
+//Подсвечивает клавиши при нажатии
+      highlight(key, code, event) {
+        if (code == 'CapsLock') {
+          if (event == 'keydown' || event == 'mousedown') {
+            if (Array.from(key.classList).includes('active')) {
+              key.classList.remove('active');
+            } else {
+              key.classList.add('active');
+            }
+          }
+        } else {
+          switch (event) {
+            case 'keydown' || 'mousedown' :
+              key.classList.add('active'); break;
+            case 'keyup' || 'mouseup' :
+              key.classList.remove('active'); break;
+          }
+        }
       }
-      changeLang() {
-        let currentLang = localStorage.getItem('language');
-
+//Обрабатывает смену состояния клавиш (языка, стиля)
+      changeState(key, code, event) {
+        this.press(code, event);
+        this.highlight(key, code, event);
+        this.changeLang(code, event);
       }
 
-
+//Меняет язык
+      changeLang(code, event) {
+        if(this.shiftPressed && this.ctrlPressed) {
+          this.language == 'en' ? this.language = 'ru' : this.language = 'en';
+          keyboard.innerHTML = '';
+          this.createKeyboard();
+        }
+      }
 }
