@@ -129,7 +129,7 @@ export default [
   }, {
     code: 'Space', system: true, name: 'Space', classes: 'keyboard__button space', row: 4, place: 3,
   }, {
-    code: 'MetaRight', system: true, name: 'Ctrl', classes: 'keyboard__button ctrl ctrl_right', row: 4, place: 4,
+    code: 'ControlRight', system: true, name: 'Ctrl', classes: 'keyboard__button ctrl ctrl_right', row: 4, place: 4,
   }, {
     code: 'ArrowLeft', en: '←', enShift: '←', ru: '←', ruShift: '←', classes: 'keyboard__button arrow arrow_left', row: 4, place: 5,
   }, {
