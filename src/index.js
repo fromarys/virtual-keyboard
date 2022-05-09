@@ -23,7 +23,7 @@ window.onload = () => {
 
     const readme = document.createElement('p');
     readme.classList.add('readme');
-    readme.innerHTML = 'Сменить раскладку клавиатуры можно нажатием клавиш <strong>Ctrl</strong> + <strong>Shift</strong>';
+    readme.innerHTML = 'Клавиатура создана в операционной системе Windows <br> Сменить раскладку клавиатуры можно нажатием клавиш <strong>Ctrl</strong> + <strong>Shift</strong>';
     wrapper.append(readme);
 
 //Создает клавиатуру

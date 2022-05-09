@@ -15,8 +15,8 @@
     }
     &__button {
         padding: 14px 21px 16px;
-        box-shadow: inset 0 -2px black, inset 0 -4px #666666;
-        background-color: #525252;
+        box-shadow: inset 0 -2px #191919, inset 0 -4px #7f7f7f;
+        background-color: #7f7f7f;
         color: white;
         border-radius: 4px;
         text-align: center;
@@ -29,11 +29,11 @@
         }
         &.active {
             background: #333333;
-            box-shadow: inset 0 -2px black;
+            box-shadow: inset 0 -2px #191919;
         }
         &:active {
             background: #333333;
-            box-shadow: inset 0 -2px black;
+            box-shadow: inset 0 -2px #191919;
         }
     }
     .shift, .enter, .caps-lock {
