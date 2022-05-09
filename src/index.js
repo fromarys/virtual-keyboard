@@ -50,7 +50,7 @@ window.onload = () => {
 
 //Обрабатывает клики мыши
     let mousePressed = (event) => {
-        textarea.value = module.insert(event.target, textarea.value);
+        if(event.type == 'mousedown') textarea.value = module.insert(event.target, textarea.value);
         module.changeState(event.target, event.target.dataset.keyCode, event.type);
     };
 
