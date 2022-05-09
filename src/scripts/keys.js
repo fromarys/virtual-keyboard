@@ -125,10 +125,10 @@ export default [
   {
     code: 'ControlLeft', system: true, name: 'Ctrl', classes: 'keyboard__button ctrl ctrl_left', row: 4, place: 0,
   }, {
-    code: 'AltLeft', system: true, name: 'alt', classes: 'keyboard__button alt alt_left', row: 4, place: 1,
-  }, {
     code: 'MetaLeft', system: true, name: 'Win', classes: 'keyboard__button win win_left', row: 4, place: 2,
   }, {
+    code: 'AltLeft', system: true, name: 'alt', classes: 'keyboard__button alt alt_left', row: 4, place: 1,
+  },  {
     code: 'Space', system: true, name: 'Space', classes: 'keyboard__button space', row: 4, place: 3,
   }, {
     code: 'ControlRight', system: true, name: 'Ctrl', classes: 'keyboard__button ctrl ctrl_right', row: 4, place: 4,

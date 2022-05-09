@@ -1,7 +1,3 @@
-const html = document.querySelector('html');
-const keyboard = document.querySelector('.keyboard');
-const textarea = document.querySelector('.textarea');
-
 export default class {
     constructor(keys) {
       this.language = this.checkLang();
@@ -11,14 +7,17 @@ export default class {
         this.capslockPressed = false;
         this.ctrlPressed = false;
       }
+
 //Выполняет проверку языка
       checkLang() {
-        let currentLang = localStorage.getItem('language');
-        if(!currentLang) {
-          currentLang = 'en';
-        } 
+        let currentLang = localStorage.getItem('lang');
+        if (!currentLang) {
+          localStorage.setItem('lang', 'en');
+          currentLang = localStorage.getItem('lang');
+        }
         return currentLang;
       }
+
 //Создает клавиши
       createKeyboard() {
         let createRow;
@@ -26,7 +25,7 @@ export default class {
           if (createRow !== elem.row) {
             const row = document.createElement('div');
             row.classList.add('keyboard__row');
-            keyboard.append(row);
+            document.querySelector('.keyboard').append(row);
             createRow = elem.row;
           }
           const button = document.createElement('div');
@@ -42,22 +41,32 @@ export default class {
        return this.keys.filter(e => e.code == btn.dataset.keyCode)[0];
       }
 
+//Возвращает информацию о положении курсора в textarea
+      selection() {
+        let textarea =  document.querySelector('.textarea');
+        let s = textarea.selectionEnd;
+        return s;
+      }
+
 
 //Вводит текст в textarea
       insert(btn, text) {
+        let arr;
         let info = this.buttonInfo(btn);
+        let s = document.querySelector('.textarea').selectionStart;
         let value = text;
         if (info == undefined) return value;
         if(info.system) {
           switch(info.code) {
             case 'Backspace' :
-              value = value.slice(0, -1); break;
-            case 'Delete' :
-              let arr;
               arr = value.split('');
-              arr.splice(textarea.selectionStart, 1);
+              arr.splice(s-1, 1);
               value = arr.join('');
-              this.setSelection(textarea.selectionStart, 5);
+              break;
+            case 'Delete' :
+              arr = value.split('');
+              arr.splice(s, 1);
+              value = arr.join('');
               break;
             case 'Tab' :
               value += '\t'; break;
@@ -66,7 +75,7 @@ export default class {
             case 'Space' :
               value += ' '; break;
             default :
-            value = value;
+            value;
           }
         } else {
           if(this.shiftPressed || this.capslockPressed) {
@@ -102,6 +111,7 @@ export default class {
           }
         }
       }
+
 //Подсвечивает клавиши при нажатии
       highlight(key, code, event) {
         if (code == 'CapsLock') {
@@ -121,18 +131,25 @@ export default class {
           }
         }
       }
+
 //Обрабатывает смену состояния клавиш (языка, стиля)
       changeState(key, code, event) {
         this.press(code, event);
         this.highlight(key, code, event);
-        this.changeLang(code, event);
+        this.changeLang();
       }
 
 //Меняет язык
-      changeLang(code, event) {
+      changeLang() {
         if(this.shiftPressed && this.ctrlPressed) {
-          this.language == 'en' ? this.language = 'ru' : this.language = 'en';
-          keyboard.innerHTML = '';
+          if ( this.language == 'en') {
+            localStorage.setItem('lang', 'ru');
+            this.language = localStorage.getItem('lang');
+          } else {
+            localStorage.setItem('lang', 'en');
+            this.language = localStorage.getItem('lang');
+          }
+          document.querySelector('.keyboard').innerHTML = '';
           this.createKeyboard();
         }
       }
