@@ -30,13 +30,16 @@
     "url": "https://github.com/fromarys/virtual-keyboard/issues"
   },
   "homepage": "https://github.com/fromarys/virtual-keyboard#readme",
+  "dependencies": {
+    "normalize.css": "^8.0.1"
+  },
   "devDependencies": {
     "css-loader": "^6.7.1",
     "eslint": "^8.14.0",
+    "eslint-config-airbnb": "^19.0.4",
     "html-loader": "^3.1.0",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.6.0",
-    "normalize.css": "^8.0.1",
     "postcss": "^8.4.13",
     "postcss-loader": "^6.2.1",
     "postcss-preset-env": "^7.5.0",

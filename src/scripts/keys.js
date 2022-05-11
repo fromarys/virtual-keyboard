@@ -57,7 +57,7 @@ export default [
     code: 'BracketLeft', en: '[', enShift: '{', ru: 'х', ruShift: 'Х', row: 1, place: 11,
   }, {
     code: 'BracketRight', en: ']', enShift: '}', ru: 'ъ', ruShift: 'Ъ', row: 1, place: 12,
-  },{
+  }, {
     code: 'Delete', system: true, name: 'Del', classes: 'keyboard__button delete', row: 1, place: 13,
   },
 
@@ -128,7 +128,7 @@ export default [
     code: 'MetaLeft', system: true, name: 'Win', classes: 'keyboard__button win win_left', row: 4, place: 2,
   }, {
     code: 'AltLeft', system: true, name: 'Alt', classes: 'keyboard__button alt alt_left', row: 4, place: 1,
-  },  {
+  }, {
     code: 'Space', system: true, name: 'Space', classes: 'keyboard__button space', row: 4, place: 3,
   }, {
     code: 'ControlRight', system: true, name: 'Ctrl', classes: 'keyboard__button ctrl ctrl_right', row: 4, place: 4,
