@@ -1,0 +1,65 @@
+.keyboard {
+    width: 900px;
+    margin: 0 auto;
+    box-shadow: inset 0 -2px #c4c4c4, inset 0 -4px white;
+    background-color: rgba(221, 221, 221, 0.4);
+    border-radius: 5px;
+    padding: 7px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    &__row {
+        display: flex;
+        column-gap: 7px;
+        justify-content: space-between;
+    }
+    &__button {
+        padding: 14px 21px 16px;
+        box-shadow: inset 0 -2px #191919, inset 0 -4px #7f7f7f;
+        background-color: #7f7f7f;
+        color: white;
+        border-radius: 4px;
+        text-align: center;
+        cursor: pointer;
+        font-size: 1.5rem;
+        flex: 0.5 0;
+        user-select: none;
+        &:hover {
+            opacity: 0.7;
+        }
+        &.active {
+            background: #333333;
+            box-shadow: inset 0 -2px #191919;
+        }
+        &:active {
+            background: #333333;
+            box-shadow: inset 0 -2px #191919;
+        }
+    }
+    .shift, .enter, .caps-lock {
+        flex-grow: 6;
+    }
+    .tab, .del {
+        flex-grow: 2;
+    }
+    .backspace {
+        flex-grow: 8;
+    }
+    .space {
+        flex-grow: 22;
+    }
+    .ctrl, .win, .alt {
+        flex-grow: 2;
+    }
+    .shift {
+        &_right {
+            flex-grow: 6;
+        }
+        &_left {
+            flex-grow: 5;
+        }
+    }
+    .caps-lock {
+        padding: 14px 13px 16px;
+    }
+}
